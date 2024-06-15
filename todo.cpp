@@ -11,7 +11,7 @@ map<string, vector<string>> DB;
 void show_commands();
 bool valid_data(const string& date);
 void add(const string& date , const string& event);
-void ask_for_next_action(string& command); // extra
+void ask_for_action(string& command); // extra
 
 int main(){
     cout << "Hola, Yo soy tu asistente de Eventos, si tienes alguna duda sobre mis comandos escribe: n!commands" << endl << endl;
@@ -21,7 +21,7 @@ int main(){
 
         if(command == "n!commands"){
             show_commands();
-            ask_for_next_action(command);
+            ask_for_action(command);
         } else if(command == "n!add"){
             string date, event;
             cout << "Ingrese la fecha (aaaa-mm-dd): ";
@@ -32,7 +32,7 @@ int main(){
                 getline(cin, event);
                 add(date, event);
                 cout << "Evento agregado con exito!" << endl;
-                ask_for_next_action(command);
+                ask_for_action(command);
             }
         } else if(command == "n!erase"){
             // Falta
@@ -103,7 +103,7 @@ void add(const string& date, const string& event){
 
 // extras mios
 
-void ask_for_next_action(string& command){
+void ask_for_action(string& command){
     string answ;
     cout << "Deseas hacer algo mas? (s/n)" << endl;
     cin >> answ;
