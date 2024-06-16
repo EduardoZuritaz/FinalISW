@@ -11,6 +11,8 @@ map<string, vector<string>> DB;
 void show_commands();
 bool valid_data(const string& date);
 void add(const string& date , const string& event);
+void print();
+void delete_event(const string& date, const string& event);
 void ask_for_action(string& command); // extra
 
 int main(){
@@ -21,7 +23,6 @@ int main(){
 
         if(command == "n!commands"){
             show_commands();
-            ask_for_action(command);
         } else if(command == "n!add"){
             string date, event;
             cout << "Ingrese la fecha (aaaa-mm-dd): ";
@@ -41,9 +42,10 @@ int main(){
         } else if(command == "n!find"){
             // Falta
         } else if(command == "n!show"){
-            // Falta
-        } else if(command == "n!off"){
-            break;
+            print();
+            ask_for_action(command);
+        } else if(command == "n!exit"){
+            ask_for_action(command);
         } else {
             cout << "Comando no valido" << endl;
         }
@@ -56,20 +58,21 @@ int main(){
 void show_commands(){
     cout << " " << endl;
     cout << "COMANDOS" << endl;
+    cout << " " << endl;
     cout << "n!add = Agregar evento" << endl;
     cout << "n!erase = Eliminar evento especifico" << endl;
     cout << "n!remove = Eliminar todos los eventos de una fecha" << endl;
     cout << "n!find = Encontrar eventos" << endl;
     cout << "n!show = Mostrar todos los eventos" << endl;
-    cout << "n!off = Salir" << endl << endl;
+    cout << "n!exit = Salir" << endl << endl;
 }
 
 bool valid_data(const string& date){
     int y, m, d;
-    char dash1, dash2;
+    char hyp1, hyp2;
     stringstream ss(date);
 
-    if(!(ss >> y >> dash1 >> m >> dash2 >> d) || dash1 != '-' || dash2 != '-'){
+    if(!(ss >> y >> hyp1 >> m >> hyp2 >> d) || hyp1 != '-' || hyp2 != '-'){
         cout << "Formato de Fecha incorrecto: " << date << endl;
         return false;
     }
@@ -101,16 +104,45 @@ void add(const string& date, const string& event){
     }
 }
 
+void print(){
+    for(const auto&[date, events] : DB){
+        stringstream ss(date);
+        int y;
+        int hyp;
+        ss >> y >> hyp;
+        if(y < 0)
+        continue;
+        for(const auto& event : events){
+            cout << date << " " << event << endl;
+        }
+    }
+}
+
+void delete_event(const string& date, const string& event){
+    if(DB.count(date)){
+        auto& events = DB[date];
+        for(auto i = events.begin(); i != events.end(); ++i){
+            if(*i == event){
+                events.erase(i);
+                cout << "Evento eliminado correctamente!" << endl;
+                return;
+            }
+        }
+    }
+    cout << "Evento no encontrado" << endl;
+}
+
 // extras mios
 
 void ask_for_action(string& command){
     string answ;
-    cout << "Deseas hacer algo mas? (s/n)" << endl;
+    cout << "No deseas hacer algo mas? (s/n)" << endl;
     cin >> answ;
 
     if (answ == "s" || answ == "S" || answ == "si" || answ == "Si") {
         show_commands();
     } else if (answ == "n" || answ == "N" || answ == "no" || answ == "No") {
-        command = "n!off";
+        cout << "Saliendo del programa..." << endl;
+        exit(0);
     }
 }
