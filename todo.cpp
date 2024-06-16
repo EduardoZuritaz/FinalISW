@@ -36,11 +36,20 @@ int main(){
                 ask_for_action(command);
             }
         } else if(command == "n!erase"){
-            // Falta
+            string date, event;
+            cout << "Ingrese la fecha (aaaa-mm-dd): ";
+            cin >> date;
+            cout << "Ingrese el evento: ";
+            cin.ignore();
+            getline(cin, event);
+            delete_event(date, event);
+            ask_for_action(command);
         } else if(command == "n!remove"){
             // Falta
+            ask_for_action(command);
         } else if(command == "n!find"){
             // Falta
+            ask_for_action(command);
         } else if(command == "n!show"){
             print();
             ask_for_action(command);
