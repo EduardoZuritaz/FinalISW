@@ -53,7 +53,7 @@ Y como adicional el "a.exe" que es el ejecutable que es necesario para poder eje
 
 // Diagrama de flujos o Pseudocodigo.
 
-
+![alt text](image-1.png)
 
 // Creditos - Las personas que contribuyeron al proyecto
 
