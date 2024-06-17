@@ -1,4 +1,4 @@
-El problema
+// El problema
 
 Eres un desarrollador C++ en una empresa y se te ha solicitado crear un modelo de base de
 datos simple. Pero antes te piden investigar sobre todas las bases de datos existentes y
@@ -16,14 +16,57 @@ En una misma fecha pueden ocurrir muchos eventos diferentes, la BD debe ser capa
 almacenarlos todos. No es necesario guardar eventos idénticos que ocurran el mismo día:
 basta con guardar solo uno de ellos.
 
-Explicacion de base de datos existentes, comparativa y justificacion de este nuevo desarrollo
+// Explicacion de base de datos existentes, comparativa y justificacion de este nuevo desarrollo
 
-Estructura de repositorio
+Mi base de datos tiene la funcionalidad de almacenar, eventos en fechas espeficicas de los usuarios, permitiendoles tener un tiempo mas ordenado, a comparacion de las existentes, esta tiene un prototipo de una especie de asistente que en un futuro pueda tener mas funciones para la comodidad del usuario, un ejemplo seria la opcion de recibir una alerta cuando la fecha del evento este cerca.
 
-Descripcion de las funciones, estructuras
+// Estructura de repositorio
 
-Diagrama de flujos o Pseudocodigo.
+En el repositorio se encuentran las 3 partes fundamentales del codigo separados por modulacion y son:
 
-Creditos - Las personas que contribuyeron al proyecto
+- Cuerpo.cpp
 
-Herramientas utilizadas
+- Llamada_de_Funcion.cpp
+
+- Funcion.pp
+
+Y como adicional el "a.exe" que es el ejecutable que es necesario para poder ejecutar el programa.
+
+// Descripcion de las funciones, estructuras
+
+- void show_commands();
+
+- bool valid_data(const string& date);
+
+- void add(const string& date, const string& event);
+
+- void print();
+
+- void delete_event(const string& date, const string& event);
+
+- void remove_all(const string& date);
+
+- void find(const string& date);
+
+- void ask_for_action(string& command);
+
+
+// Diagrama de flujos o Pseudocodigo.
+
+
+
+// Creditos - Las personas que contribuyeron al proyecto
+
+Estudiante: Eduardo Zurita Ferrufino
+
+// Herramientas utilizadas
+
+- Visual Studio Code
+
+- Youtube
+
+- Chrome
+
+- ChatGPT
+
+- Draw.io
