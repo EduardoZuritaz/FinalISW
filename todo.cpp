@@ -13,10 +13,11 @@ bool valid_data(const string& date);
 void add(const string& date , const string& event);
 void print();
 void delete_event(const string& date, const string& event);
+void remove_all(const string& date);
 void ask_for_action(string& command); // extra
 
 int main(){
-    cout << "Hola, Yo soy tu asistente de Eventos, si tienes alguna duda sobre mis comandos escribe: n!commands" << endl << endl;
+    cout << "Hola, Yo soy LUO tu asistente de Eventos, si tienes alguna duda sobre mis comandos escribe: n!commands" << endl << endl;
     while(true){
         string command;
         cin >> command;
@@ -45,7 +46,12 @@ int main(){
             delete_event(date, event);
             ask_for_action(command);
         } else if(command == "n!remove"){
-            // Falta
+            string date;
+            cout << "Ingrese la fecha (aaaa-mm-dd): ";
+            cin >> date;
+            cin.ignore();
+            DB.erase(date);
+            cout << "Todos los eventos de la fecha " << date << " han sido eliminados." << endl;
             ask_for_action(command);
         } else if(command == "n!find"){
             // Falta
@@ -56,7 +62,7 @@ int main(){
         } else if(command == "n!exit"){
             ask_for_action(command);
         } else {
-            cout << "Comando no valido" << endl;
+            cout << "Comando no valido\nVuelve a intentarlo: ";
         }
     }
     return 0;
@@ -139,6 +145,16 @@ void delete_event(const string& date, const string& event){
         }
     }
     cout << "Evento no encontrado" << endl;
+}
+
+void remove_all(const string& date){
+    if(DB.count(date)){
+        int number_events = DB[date].size();
+        DB.erase(date);
+        cout << "Eliminando " << number_events << " eventos" << endl;
+    } else {
+        cout << "Eliminado 0 eventos" << endl;
+    }
 }
 
 // extras mios
